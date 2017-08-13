@@ -61,11 +61,11 @@ abstract class Kernel implements KernelInterface, TerminableInterface
 
     private $projectDir;
 
-    const VERSION = '3.3.3';
-    const VERSION_ID = 30303;
+    const VERSION = '3.3.6';
+    const VERSION_ID = 30306;
     const MAJOR_VERSION = 3;
     const MINOR_VERSION = 3;
-    const RELEASE_VERSION = 3;
+    const RELEASE_VERSION = 6;
     const EXTRA_VERSION = '';
 
     const END_OF_MAINTENANCE = '01/2018';
@@ -551,7 +551,7 @@ abstract class Kernel implements KernelInterface, TerminableInterface
                         return;
                     }
 
-                    $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
+                    $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 3);
                     // Clean the trace by removing first frames added by the error handler itself.
                     for ($i = 0; isset($backtrace[$i]); ++$i) {
                         if (isset($backtrace[$i]['file'], $backtrace[$i]['line']) && $backtrace[$i]['line'] === $line && $backtrace[$i]['file'] === $file) {
