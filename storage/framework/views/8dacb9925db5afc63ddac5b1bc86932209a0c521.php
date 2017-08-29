@@ -108,15 +108,22 @@
    <div class="col-md-7">
 
        <div class="navbar" style="padding-left:5%;">
-         <form action="<?php echo url('/') ?>/ara" id="giris_form" method="get">
+        <div class="col-md-12">
+    <form action="<?php echo url('/') ?>/ara" id="giris_form" method="get">
            <div class="input-group">
              <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
-             <input type="text" value="<?php if(!empty($search_data)): ?><?php $__currentLoopData = $search_data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php echo e(str_replace(["'%","%'"],['',''],$value)); ?>,<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> <?php elseif(!empty($ara)): ?><?php echo e($ara); ?><?php endif; ?>" name="arama" placeholder="İstediğin Ürünleri Ara" class="input input-lg" id="search_input" style="height:55px;">
+             <input type="text" value="<?php if(!empty($search_data)): ?><?php $__currentLoopData = $search_data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php echo e(str_replace(["'%","%'"],['',''],$value)); ?>,<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> <?php elseif(!empty($ara)): ?><?php echo e($ara); ?><?php endif; ?>" name="arama" placeholder="İstediğin Ürünleri Ara" class="input input-lg" id="search_input" style="height:55px;" autocomplete="off">
              <button type="button" class="input-group-addon btn btn-lg btn-default glyphicon glyphicon glyphicon-search" id="search_button" name="button"></button>
            </div>
-
-
      </form>
+     <div class="col-md-10 panel panel-body arama_acilir">
+      <table class="table table-bordered table-responsive">
+      <tbody class="arama_sonuclari">
+          
+      </tbody>
+      </table>
+     </div>
+        </div>
        </div>
      </div>
      <div class="col-md-3">

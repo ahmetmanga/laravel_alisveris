@@ -97,15 +97,22 @@
    <div class="col-md-7">
 
        <div class="navbar" style="padding-left:5%;">
-         <form action="<?php echo url('/') ?>/ara" id="giris_form" method="get">
+        <div class="col-md-12">
+    <form action="<?php echo url('/') ?>/ara" id="giris_form" method="get">
            <div class="input-group">
              <input type="hidden" name="_token" value="{{ csrf_token() }}">
-             <input type="text" value="@if(!empty($search_data))@foreach($search_data as $value){{str_replace(["'%","%'"],['',''],$value)}},@endforeach @elseif(!empty($ara)){{$ara}}@endif" name="arama" placeholder="İstediğin Ürünleri Ara" class="input input-lg" id="search_input" style="height:55px;">
+             <input type="text" value="@if(!empty($search_data))@foreach($search_data as $value){{str_replace(["'%","%'"],['',''],$value)}},@endforeach @elseif(!empty($ara)){{$ara}}@endif" name="arama" placeholder="İstediğin Ürünleri Ara" class="input input-lg" id="search_input" style="height:55px;" autocomplete="off">
              <button type="button" class="input-group-addon btn btn-lg btn-default glyphicon glyphicon glyphicon-search" id="search_button" name="button"></button>
            </div>
-
-
      </form>
+     <div class="col-md-10 panel panel-body arama_acilir">
+      <table class="table table-bordered table-responsive">
+      <tbody class="arama_sonuclari">
+          
+      </tbody>
+      </table>
+     </div>
+        </div>
        </div>
      </div>
      <div class="col-md-3">

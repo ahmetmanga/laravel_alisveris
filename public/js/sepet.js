@@ -214,4 +214,49 @@ $(document).ready(function() {
 
             });
 });
+ document.getElementById("search_input").addEventListener('keydown',function(){
+      var isim,resim,link;
+      var arama = $("#search_input").val();
+        if(arama.length < 2){
+          $(".arama_sonuclari").html("");
+          $(".arama_acilir").hide();     
+        }else{
+          $.ajax({
+            url:'http://localhost/blog/veri_getir/'+arama,
+            type:'GET',
+            dataType:'json',
+            statusCode:{
+              404:function(){
+                alert("Ajax dosyası bulunamadı");
+              }
+            },
+            success:function(veri){
+              if(veri.error){
+                alert(veri.error);
+              }else{
+                $(".arama_sonuclari").html("");
+                 $.each(veri.data,function(key,value){
+                    var satir = value;
+                    $.each(satir,function(key,value){
+                      if(key == "id"){
+                        link = value;
+                      }else if(key == "name"){
+                        isim = value;
+                      }else if(key == "resim"){
+           $(".arama_sonuclari").append("<tr><td><a href='http://localhost/blog/urun_detay/"+link+"'><img src='"+value+"' width='30' heigh='30'></a></td><td><h4 class='text-primary'><a href='http://localhost/blog/urun_detay/"+link+"'>"+isim.substr(0,60)+"</a></h4></td></tr>");             
+                      }
+                    });
+                 });
+              }
+            },
+            error:function(){
+              // alert("Hata oluştu. Tekrar deneyin.");
+            },
+            timeout: 4000,
+
+            });
+          $(".arama_acilir").show();
+        }
+    });
+   
 });

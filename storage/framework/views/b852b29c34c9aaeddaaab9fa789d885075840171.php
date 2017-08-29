@@ -125,7 +125,7 @@
     <?php endif; ?>
 
       </div>
-      <div class="col-md-4 col-md-offset-2 puan_renk" id="puanla" style="margin-top:5%;">
+      <div class="col-md-5 col-md-offset-1 puan_renk" id="puanla" style="margin-top:5%;">
         <?php   $ratings = floor($data->ratings); ?>
           <h4><a href="#" data-toggle="modal" data-target="#yorum_yap">Yorum Yap</a> | <a href="#urun_detay_tab">Yorumlar (<?php echo e($yorum_sayisi); ?>)</a></h4>
           <h3 class="puan_renk">
@@ -187,7 +187,6 @@
 
       </div>
     </div>
-  </form>
 
     <div class="row" style="margin-top:5%;margin-bottom:2%;">
       <?php if($data->view != 0): ?>

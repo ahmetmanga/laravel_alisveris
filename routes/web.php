@@ -239,6 +239,21 @@ Route::middleware(['timeout_control'])->group(function(){
           }
     }
   });
+    Route::get('veri_getir/{arama}',function($arama){
+    if(!empty($arama) && Request::ajax()){
+      $arama = \App\Http\Controllers\Controller::temizle($arama);
+      $data2 = DB::select("SELECT * FROM `product` WHERE `name` LIKE '%".$arama."%' AND view=1 ORDER BY ratings DESC LIMIT 0,10");
+      $data = [];
+      foreach($data2 as $value){
+          if(strpos($value->resim,"*resim*")){
+            $bol = explode("*resim*",$value->resim);
+            $value->resim = $bol[0];
+          }
+          $data[$value->id] = $value;
+      }
+      return Response::json(['data'=>$data]);
+    }
+  });
   Route::get('/', function () {
       return view('sayfa.index');
   });
@@ -256,6 +271,7 @@ Route::middleware(['timeout_control'])->group(function(){
       return view('sayfa.giris');
   }
   });
+
   Route::post('/kayit',['uses'=>'UserController@signup']);
   Route::post('/login',['uses'=>'UserController@login']);
   Route::get('/index',function(){
